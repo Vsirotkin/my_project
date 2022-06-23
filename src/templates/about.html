@@ -8,7 +8,11 @@
 {% block content %}
     <ul>
         {% for item in my_list %}
-            <li>{{ item }}</li>
+            {% if item == 'name' %}
+                <h2>My Name is Nick</h2>
+            {% else %}
+                <li>{{ forloop.counter }} - {{ item }}</li>
+            {% endif %}
         {% endfor %}
     </ul>
 {% endblock content %}
