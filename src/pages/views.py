@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def home_view(request):
-    return render(request, 'home.html', {})
+    return render(request, 'home.html')
 
 my_list = ['name', 'age', 'password']
 def about_view(request):
