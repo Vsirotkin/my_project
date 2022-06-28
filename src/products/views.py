@@ -11,6 +11,8 @@ def product_create_view(request):
         if my_form.is_valid():
             Product.objects.create(**my_form.cleaned_data)
 
+        my_form = RowProductForm
+
     context = {
         'form': my_form,
     }
