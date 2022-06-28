@@ -1,8 +1,24 @@
 from django.shortcuts import render, get_object_or_404
-from .forms import ProductForm
-# from .models import Product
+from .forms import RowProductForm
+from .models import Product
 
 
+def product_create_view(request):
+    my_form = RowProductForm()
+
+    if request.method == 'POST':
+        my_form = RowProductForm(request.POST)
+        if my_form.is_valid():
+            Product.objects.create(**my_form.cleaned_data)
+
+    context = {
+        'form': my_form,
+    }
+
+    return render(request, 'products/product_create.html', context)
+
+
+'''
 def product_create_view(request):
     form = ProductForm(request.POST or None)
     if form.is_valid():
@@ -15,7 +31,6 @@ def product_create_view(request):
     return render(request, 'products/product_create.html', context)
 
 
-'''
 def product_detail_view(request):
     obj = get_object_or_404(Product, pk=1)
 
