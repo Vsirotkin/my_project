@@ -4,11 +4,21 @@ from .models import Product
 
 
 class RowProductForm(forms.Form):
-    title = forms.CharField()
-    description = forms.CharField()
-    price = forms.DecimalField()
+    title = forms.CharField(label='my title', widget=forms.TextInput(attrs={'placeholder': 'my name for input'}))
+    description = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': 'my description',
+                'class': 'my_new_class',
+                'rows': 5,
+                'cols': 25,
+            }
+        )
+    )
+    price = forms.DecimalField(initial=200.00)
 
-
+'''
 class ProductForm(ModelForm):
     class Meta:
         model = Product
@@ -17,3 +27,4 @@ class ProductForm(ModelForm):
             'description',
             'price',
         ]
+'''
