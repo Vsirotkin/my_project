@@ -21,7 +21,7 @@ class RowProductForm(forms.Form):
 
 
 
-class ProductForm(ModelForm):
+class ProductForm(forms.Form):
     title = forms.CharField(
         label='my title',
         widget=forms.TextInput(
@@ -39,19 +39,22 @@ class ProductForm(ModelForm):
             }
         )
     )
+    email = forms.EmailField()
     price = forms.DecimalField(initial=200.00)
 
-    class Meta:
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not email.endswith('ru'):
+            raise forms.ValidationError('it is not a valid email address!')
+        return email
+
+'''
+ class Meta:
         model = Product
         fields = [
             'title',
             'description',
             'price',
         ]
-
-
-    def clean_description(self):
-        description = self.cleaned_data.get('description')
-        if not 'VIK' in description:
-            raise forms.ValidationError('it is not a valid value for description')
-        return description
+'''
