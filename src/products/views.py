@@ -3,6 +3,23 @@ from .forms import *
 from .models import Product
 
 
+def render_initial_data(request):
+    initial_data = {
+        'title': 'this is my awesome title',
+        'description': 'text from render initial data view',
+    }
+    form = RowProductForm(request.POST or None, initial=initial_data)
+    if form.is_valid():
+        Product.objects.create(**form.cleaned_data)
+    form = RowProductForm
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'products/product_create.html', context)
+
+'''
 def product_create_view(request):
     form = ProductForm(request.POST or None)
     if form.is_valid():
@@ -14,7 +31,7 @@ def product_create_view(request):
     }
     return render(request, 'products/product_create.html', context)
 
-'''
+
 def product_create_view(request):
     my_form = RowProductForm()
 
