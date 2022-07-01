@@ -4,7 +4,7 @@ from .models import Product
 
 
 class RowProductForm(forms.Form):
-    title = forms.CharField(label='my title', widget=forms.TextInput(attrs={'placeholder': 'my name for input'}))
+    title = forms.CharField(label='my title', widget=forms.TextInput(attrs={'placeholder': 'input product name'}))
     description = forms.CharField(
         required=False,
         widget=forms.Textarea(
@@ -16,9 +16,13 @@ class RowProductForm(forms.Form):
             }
         )
     )
+
     price = forms.DecimalField(initial=200.00)
 
 
+
+
+'''
 class ProductForm(forms.Form):
     title = forms.CharField(
         label='my title',
@@ -47,7 +51,7 @@ class ProductForm(forms.Form):
             raise forms.ValidationError('it is not a valid email address!')
         return email
 
-'''
+
  class Meta:
         model = Product
         fields = [
