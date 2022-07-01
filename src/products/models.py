@@ -13,7 +13,7 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         # option one - dynamic
-        return reverse('product_detail_view', kwargs={'id': self.pk})
+        return reverse('products:product_detail_view', kwargs={'id': self.pk})
 
     '''
     option 2 - hard coded
