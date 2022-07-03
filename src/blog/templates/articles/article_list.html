@@ -7,7 +7,7 @@
 <ul>
     {% for article in object_list %}
        <li>
-           {{ article.id }} - <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+           {{ article.id }} - <a href="{{ object.get_absolute_url }}">{{ article.title }}</a>
        </li>
     {% empty %}
         <li>No Article Yet!</li>

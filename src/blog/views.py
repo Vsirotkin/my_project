@@ -13,6 +13,22 @@ from .models import Article
 
 
 # Create your views here.
+class ArticleCreateView(CreateView):
+    template_name = 'articles/article_create.html'
+    form_class = ArticleModelForm
+    queryset = Article.objects.all()
+    success_url = '/'
+
+
 class ArticleListView(ListView):
     template_name = 'articles/article_list.html'
     queryset = Article.objects.all()
+
+
+class ArticleDetailView(DetailView):
+    template_name = 'articles/article_detail.html'
+
+
+    def get_object(self):
+        id_ = self.kwargs.get('pk')
+        return get_object_or_404(Article, pk=id_)
