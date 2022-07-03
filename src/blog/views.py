@@ -32,3 +32,14 @@ class ArticleDetailView(DetailView):
     def get_object(self):
         id_ = self.kwargs.get('pk')
         return get_object_or_404(Article, pk=id_)
+
+
+class ArticleUpdateView(UpdateView):
+    template_name = 'articles/article_create.html'
+    form_class = ArticleModelForm
+    queryset = Article.objects.all()
+    success_url = '/'
+
+    def get_object(self, queryset=None):
+        id_ = self.kwargs.get('pk')
+        return get_object_or_404(Article, pk=id_)
